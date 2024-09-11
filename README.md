@@ -1,2 +1,2 @@
 # BMMB_852
-Repository for BMMD 852
+Repository for BMMB 852
