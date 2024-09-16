@@ -1,5 +1,7 @@
 #Homework Assignment 2 BMMB 852
+
 #Tell us a bit about the organism.
+
 #Vulpes vulpes is a red fox. It is part of the order Carnivora. This species is present across the entire northern hemisphere.
 
 #How many features does the file contain?
