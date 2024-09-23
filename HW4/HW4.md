@@ -5,7 +5,7 @@
 ## Choose a feature type from the GFF file and look up its definition in the sequence ontology
 Selected feature: mRNA
 ## Find both the parent terms and children nodes of the term
-![Screenshot](PNGs/HW4_Screenshot1.png)
+![Screenshot](HW4/HW4_Screenshot1.png)
 
 ## Provide a short discussion of what you found
 The definition provided by the Sequence Ontology program defines mRNA as "Messenger RNA is the intermediate molecule between DNA and protein. It includes UTR and coding sequences. It does not contain introns."
