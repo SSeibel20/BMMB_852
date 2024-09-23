@@ -15,7 +15,7 @@ source ~/.bashrc
 eval "$(micromamba shell hook --shell bash)"
 micromamba activate bioinfo
 
-#others us "conda activate bioinfo" use whichever suits your package manager
+#others use "conda activate bioinfo" use whichever suits your package manager
 
 # Move to the desired directory to download your files
 cd $HOME_DIR
