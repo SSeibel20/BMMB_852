@@ -13,7 +13,7 @@ ORGANISM="Vulpes_vulpes"
 cd $HOME_DIR
 
 #Get number of features 
-wget -O $ORGANISM.gff3.gz $URL .
+wget -O $ORGANISM.gff3.gz $URL
 
 #Unzip the file 
 gunzip $ORGANISM.gff3.gz 
