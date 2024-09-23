@@ -3,6 +3,9 @@
 #Samantha Seibel
 #September 22nd, 2024
 
+#debugging
+#set -x
+
 #Set Paths for reproducibility
 #Change the variables to suit your needs
 HOME_DIR="/Users/sls6550/work/BMMB_852"
