@@ -10,7 +10,12 @@ URL="https://ftp.ensembl.org/pub/current_gff3/vulpes_vulpes/Vulpes_vulpes.VulVul
 ORGANISM="Vulpes_vulpes"
 
 #Activate your bioinfo environment
-conda activate bioinfo
+#I activate my code via the following, not sure if this is how others do
+source ~/.bashrc
+eval "$(micromamba shell hook --shell bash)"
+micromamba activate bioinfo
+
+#others us "conda activate bioinfo" use whichever suits your package manager
 
 # Move to the desired directory to download your files
 cd $HOME_DIR
