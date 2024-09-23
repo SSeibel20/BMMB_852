@@ -9,6 +9,9 @@ HOME_DIR="/Users/sls6550/work/BMMB_852"
 URL="https://ftp.ensembl.org/pub/current_gff3/vulpes_vulpes/Vulpes_vulpes.VulVul2.2.112.abinitio.gff3.gz"
 ORGANISM="Vulpes_vulpes"
 
+#Activate your bioinfo environment
+conda activate bioinfo
+
 # Move to the desired directory to download your files
 cd $HOME_DIR
 
