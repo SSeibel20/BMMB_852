@@ -36,7 +36,7 @@ I thought it was weird that this gff3 file contained no gene annotations, I may 
 `grep -v '^#' vulpes.gff3 | wc -l`
 
 ## To determine how many genes 
-`grep -v '^#' vulpes.gff3 | awk '$3' == "exon" | wc -l`
+`grep -v '^#' vulpes.gff3 | awk '$3 == "exon"' | wc -l`
 
 ## Determine top 10 annotated features 
 `rep -v '^#' vulpes.gff3 | awk '{print $3}' | sort | uniq -c | sort -nr | head -10`
