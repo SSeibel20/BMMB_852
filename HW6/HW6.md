@@ -3,8 +3,11 @@
 
 **Select SRA project of interest, then download the corresponding FASTQ files**
 Selected: 16S of mouse gut mircobiome: Male 
+
 NCBI Taxonomy ID: SRR30756726
+
 Bioproject: PRJNA1158932
+
 Description: Phage therapy targeted E.coli Raw sequence reads
 
 **From the FASTQC analysis of the dataset**
