@@ -14,7 +14,7 @@ There is a need to clean the data
 ![Screenshot](HW6_Screenshot1.png)
 ![Screenshot](HW6_Screenshot2.png)
 
-**Using the tool fastp to clean the data***
+**Using the tool fastp to clean the data**
 
 https://github.com/OpenGene/fastp
 Shifu Chen, Yanqing Zhou, Yaru Chen, Jia Gu, fastp: an ultra-fast all-in-one FASTQ preprocessor, Bioinformatics, Volume 34, Issue 17, September 2018, Pages i884–i890, https://doi.org/10.1093/bioinformatics/bty560
