@@ -1,5 +1,5 @@
 # Homework 6: FASTQ Quality Control
-*Samantha Seibel September 22nd, 2024*
+*Samantha Seibel October 6th, 2024*
 
 **Select SRA project of interest, then download the corresponding FASTQ files**
 Selected: 16S of mouse gut mircobiome: Male 
