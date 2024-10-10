@@ -1,54 +1,49 @@
-#!/bin/bash
 # Samantha Seibel
 # Homework 6: FASTQ Quality Control
 
-# Activate your bioinfo environment
-source ~/.bashrc
-eval "$(micromamba shell hook --shell bash)"
-micromamba activate bioinfo
+#error tracing
+set -uex
 
 # Set Paths for reproducibility
 HOME_DIR="/Users/sls6550/work/BMMB_852/HW6"
-QUALITY="${HOME_DIR}/Quality"
+NUM=10000
 SRR="SRR30756726"
-FASTERQ_INDIR="${HOME_DIR}/Data"
-FASTP_OUTDIR="${HOME_DIR}/fastp_filt"
+QUALITY="$HOME_DIR/Quality"
+FASTQ_INDIR="$HOME_DIR/Data"
+R1="$FASTQ_INDIR/${SRR}_1.fastq.gz"
+R2="$FASTQ_INDIR/${SRR}_2.fastq.gz"
+FASTP_OUTDIR="$HOME_DIR/fastp_filt"
+T1="$FASTP_OUTDIR/$SRR_1_trimmed.fastq.gz"
+T2="$FASTP_OUTDIR/$SRR_2_trimmed.fastq.gz"
 
 # Move to the desired directory to download your files
-cd ${HOME_DIR}
+cd $HOME_DIR
 
-# Check if fasterq-dump is installed
-if ! command -v fasterq-dump &> /dev/null
-then
-    echo "fasterq-dump not found, installing sra-tools..."
-    micromamba install -c bioconda sra-tools
-fi
+# Make directory for data to download
+mkdir -p $FASTQ_INDIR
 
-# Get FASTQ files from NCBI via SRR number
-fasterq-dump ${SRR} --outdir ${FASTERQ_INDIR} --split-files --threads 4
+# Get subset of FASTQ files from NCBI via SRR number base on NUM
+fastq-dump -X $NUM $SRR --outdir $FASTQ_INDIR --split-files --threads 4
 
-# Compress files for storage sake
-gzip ${FASTERQ_INDIR}/*.fastq
+# Zip incoming files to preserve space
+gzip $FASTQ_INDIR/*.fastq
 
-# Create directory for quality checks
-mkdir -p ${QUALITY}
+# Create directory for quality checking
+mkdir -p $QUALITY
 
 # Run fastqc on all .fastq.gz files
-fastqc ${FASTERQ_INDIR}/*.fastq.gz -o ${QUALITY}
+fastqc $FASTQ_INDIR/*.fastq.gz -o $QUALITY
 
 # Define fastp output directory
-mkdir -p ${FASTP_OUTDIR}
+mkdir -p $FASTP_OUTDIR
 
-# Get list of sample names (remove the _1.fastq.gz or _2.fastq.gz part)
-ls ${FASTERQ_INDIR} | sed -E 's/_[12]\.fastq\.gz//' | uniq > ${HOME_DIR}/names.txt
+# Run fastp for fitering and trimming
+fastp -r -i $R1 -I $R2 -o $T1 -O $T2
 
-# Run fastp in parallel with correct filename formatting
-cat ${HOME_DIR}/names.txt | \
-parallel /Users/sls6550/micromamba/envs/bioinfo/bin/fastp \
--i ${FASTERQ_INDIR}/{}_1.fastq.gz \
--I ${FASTERQ_INDIR}/{}_2.fastq.gz \
--o ${FASTP_OUTDIR}/{}_fastp_1.fastq \
--O ${FASTP_OUTDIR}/{}_fastp_2.fastq 
+# Run fastqc on newly trimmed files
+fastqc $FASTP_OUTDIR/*.fastq.gz -o $QUALITY/trim_${SRR}
 
-echo "done"
+# Compare fastqc.html files before and after trimming
+
+
 
