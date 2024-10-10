@@ -13,8 +13,8 @@ FASTQ_INDIR="$HOME_DIR/Data"
 R1="$FASTQ_INDIR/${SRR}_1.fastq.gz"
 R2="$FASTQ_INDIR/${SRR}_2.fastq.gz"
 FASTP_OUTDIR="$HOME_DIR/fastp_filt"
-T1="$FASTP_OUTDIR/$SRR_1_trimmed.fastq.gz"
-T2="$FASTP_OUTDIR/$SRR_2_trimmed.fastq.gz"
+T1="$FASTP_OUTDIR/${SRR}_1_trimmed.fastq.gz"
+T2="$FASTP_OUTDIR/${SRR}_2_trimmed.fastq.gz"
 
 # Move to the desired directory to download your files
 cd $HOME_DIR
