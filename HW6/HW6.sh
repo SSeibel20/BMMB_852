@@ -23,7 +23,7 @@ cd $HOME_DIR
 mkdir -p $FASTQ_INDIR
 
 # Get subset of FASTQ files from NCBI via SRR number base on NUM
-fastq-dump -X $NUM $SRR --outdir $FASTQ_INDIR --split-files --threads 4
+fastq-dump -X $NUM $SRR --outdir $FASTQ_INDIR --split-files
 
 # Zip incoming files to preserve space
 gzip $FASTQ_INDIR/*.fastq
