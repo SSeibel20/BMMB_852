@@ -39,7 +39,7 @@ genome:
 	cd $(HOME_DIR)
 	
 	#Salmonella Typhimurium LT2 assembly from NCBI
-	download-ncbi-data --genome $(ACC) --output ST_LT2_assembly.zip
+	datasets download genome accession $(ACC) --filename ST_LT2_assembly.zip
 
 	#Unzip the assembly file
 	unzip ST_LT2_assembly.zip -d ST_LT2_assembly
