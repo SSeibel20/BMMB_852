@@ -1,5 +1,6 @@
 # Homework 7: Writing a Makefile
 *Samantha Seibel October 13th, 2024*
+
 *Using code from HWs 5 and 6*
 
 **Bacteria of Interest**
