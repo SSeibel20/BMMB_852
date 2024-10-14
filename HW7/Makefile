@@ -47,6 +47,11 @@ genome:
 	#Extract the FASTA file
 	mv ST_LT2_assembly/ncbi_dataset/data/$(ACC)/*.fna ST_LT2_assembly.fasta
 
+	#Remove all extraneous information, leaving just the .fasta files
+	rm -rf ST_LT2_assembly/data/$(ACC)
+	rm -f md5sum.txt ST_LT2_assembly.zip
+
+
 simulate:
 	#change to home directory
 	cd $(HOME_DIR)
