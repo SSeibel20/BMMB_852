@@ -32,9 +32,6 @@ usage:
 	@echo "make trim         #Trim reads and run quality control post-trimming"
 
 genome:
-	#change to home directory
-	cd $(HOME_DIR)
-
 	#make home directory if necessary
 	mkdir -p $(HOME_DIR)
 	
