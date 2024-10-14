@@ -5,11 +5,17 @@
 **Bacteria of Interest**
 
 Salmonella Typhimurium LT2
+
 NCBI RefSeq assembly: GCF_000006945.2
+
 Submitted GenBank assembly: GCA_000006945.2
+
 Taxon: Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+
 Strain: LT2
+
 Submitter: Washington University Genome Sequencing Center
+
 Date: Jan 13, 2016
 
 **Code before initiating Makefile**
