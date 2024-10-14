@@ -37,6 +37,9 @@ genome:
 
 	#make home directory if necessary
 	mkdir -p $(HOME_DIR)
+	
+	#change to home directory
+	cd $(HOME_DIR)
 
 	#get Salmonella Typhimurium LT2 assembly from NCBI 
 	efetch -db genome -format fasta -email sls6550@psu.edu -id $(ACC) > ST_LT2_assembly.fasta
