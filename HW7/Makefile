@@ -62,27 +62,27 @@ simulate:
 	#Size of the FASTQ files
 	@echo "Size of FASTQ files"
 	@echo "Size of sim_1.fastq"
-	ls -lh sim_1.fastq
+	@ls -lh sim_1.fastq
 	@echo "Size of sim_2.fastq"
-	ls -lh sim_2.fastq
+	@ls -lh sim_2.fastq
 
 	#Number of reads generated
 	@echo "Number of reads generated for simulate reads"
 	@echo "Number of reads for sim_1.fastq"
-	cat sim_1.fastq | wc -l
+	@cat sim_1.fastq | wc -l
 	@echo "Number of reads for sim_2.fastq"
-	cat sim_2.fastq | wc -l
+	@cat sim_2.fastq | wc -l
 
 	#Average read length
 	@echo "Average read length"
-	grep -A 2 '^@' *.fastq | grep -v '^@' | awk '{count += length($$0); total++} END {print count / total}'
+	@grep -A 2 '^@' *.fastq | grep -v '^@' | awk '{count += length($$0); total++} END {print count / total}'
 
 	#Compress the files
 	gzip sim_1.fastq sim_2.fastq
 
 	#report size of zipped files
 	@echo "Size of zipped files (1 and 2, respectively)"
-	ls -lh sim_1.fastq.gz sim_2.fastq.gz
+	@ls -lh sim_1.fastq.gz sim_2.fastq.gz
 
 download:
 	#change to home directory
