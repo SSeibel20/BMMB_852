@@ -19,6 +19,7 @@ micromamba activate environment
 **Constructing a Makefile using the following**
 
 *Targets*
+
 usage: defines each target for user
 genome: downloads assembly of selected organism
 simulate: generates simulated fastq reads from the assembly
@@ -27,14 +28,17 @@ quality: runs fastqc on downloaded files
 trim: trims fastq files with fastp based of output of fastqc then reruns fastqc
 
 **Running the Makefile**
+
 *usage*
 ![Screenshot](HW7_Screenshot1.png)
 
 
 
 *genome*
+
 #I had issues with the efetch command I couldn't resolve. I manually downloaded the fasta file and will proceed with this
 #may be due to outage in the NCBI? Also not sure if -db assembly or genome is correct
+
 ![Screenshot](HW7_Screenshot2.png)
 
 *simulate*
