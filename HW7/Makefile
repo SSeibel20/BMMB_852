@@ -46,7 +46,7 @@ simulate:
 	cd $(HOME_DIR)
 
 	#Generate a simulated FASTQ output for a sequencing instrument of your choice.  Set the parameters so that your target coverage is 10x**
-	wgsim -N 366667 -1 150 -2 150 $(FASTA) sim_1.fastq sim_2.fastq
+	wgsim -N 333333 -1 150 -2 150 $(FASTA) sim_1.fastq sim_2.fastq
 
 	#Size of the FASTQ files
 	@echo "Size of FASTQ files"
