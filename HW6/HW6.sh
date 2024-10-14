@@ -5,7 +5,7 @@
 set -uex
 
 # Set Paths for reproducibility
-HOME_DIR="/Users/sls6550/work/BMMB_852/HW6"
+HOME_DIR="HW6"
 NUM=10000
 SRR="SRR30756726"
 QUALITY="$HOME_DIR/Quality"
@@ -18,6 +18,9 @@ T2="$FASTP_OUTDIR/${SRR}_2_trimmed.fastq.gz"
 
 # Move to the desired directory to download your files
 cd $HOME_DIR
+
+# Make home directory if necessary
+mkdir -p $HOME_DIR
 
 # Make directory for data to download
 mkdir -p $FASTQ_INDIR
