@@ -36,7 +36,7 @@ genome:
 	cd $(HOME_DIR)
 
 	#get Salmonella Typhimurium LT2 assembly from NCBI 
-	efetch -db genome -format fasta -id $(ACC) > ST_LT2_assembly.fasta
+	efetch -db genome -format fasta -email sls6550@psu.edu -id $(ACC) > ST_LT2_assembly.fasta
 
 simulate:
 	#change to home directory
