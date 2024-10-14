@@ -70,11 +70,9 @@ micromamba activate environment
 
 *genome*
 
-#I had issues with the efetch command I couldn't resolve
+#I had issues with the efetch command (one my lab uses) I couldn't resolve
 
-#I manually downloaded the fasta file and will proceed with this
-
-#may be due to outage in the NCBI? Also not sure if -db assembly or genome is correct
+#Used the datasets command provided in the biostar handbook
 
 ![Screenshot](HW7_Screenshot2.png)
 
