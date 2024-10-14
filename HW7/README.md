@@ -18,6 +18,16 @@ Submitter: Washington University Genome Sequencing Center
 
 Date: Jan 13, 2016
 
+**Sequencing Run of Interest**
+
+Salmonella enterica serovar Typhimurium genome sequencing
+
+BioSample: SAMN03470052
+
+Submitter: Ruiting Lan from University of New South Wales
+
+Date: April 9th, 2015
+
 **Code before initiating Makefile**
 
 #activate bioinfo environment
