@@ -3,6 +3,8 @@
 
 *Using code from HWs 5 and 6*
 
+*I incorporated my plots because I used different data than in Homework 5 and 6*
+
 ## Background
 
 **Bacteria of Interest**
@@ -87,6 +89,8 @@ trim: trims fastq files with fastp based of output of fastqc then reruns fastqc
 
 *trim*
 ![Screenshot](HW7_Screenshot10.png)
+![Screenshot](HW7_Screenshot11.png)
+![Screenshot](HW7_Screenshot12.png)
 
 
 
