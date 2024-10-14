@@ -35,9 +35,6 @@ genome:
 	#make home directory if necessary
 	mkdir -p $(HOME_DIR)
 	
-	#change to home directory
-	cd $(HOME_DIR)
-	
 	#Salmonella Typhimurium LT2 assembly from NCBI
 	datasets download genome accession $(ACC) --filename ST_LT2_assembly.zip
 
@@ -53,9 +50,6 @@ genome:
 
 
 simulate:
-	#change to home directory
-	cd $(HOME_DIR)
-
 	#Generate a simulated FASTQ output for a sequencing instrument of your choice.  Set the parameters so that your target coverage is 10x**
 	wgsim -N 333333 -1 150 -2 150 $(FASTA) sim_1.fastq sim_2.fastq
 
@@ -85,9 +79,6 @@ simulate:
 	@ls -lh sim_1.fastq.gz sim_2.fastq.gz
 
 download:
-	#change to home directory
-	cd $(HOME_DIR)
-
 	#Make directory for data to download
 	mkdir -p $(FASTQ_INDIR)
 
@@ -108,9 +99,6 @@ quality:
 	@echo "Compare fastqc results to define trimming parameters"
 
 trim:
-	#change to home directory
-	cd $(HOME_DIR)
-	
 	#Define fastp output directory
 	mkdir -p $(FASTP_OUTDIR)
 
