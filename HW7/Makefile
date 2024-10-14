@@ -126,5 +126,7 @@ trim:
 	#Compare fastqc.html files before and after trimming
 	@echo "Compare fastqc results to ensure correct trimming"
 
+all: usage genome simulate download quality trim
+
 #Mark the targets that do not create files.
 .PHONY: usage genome simulate download quality trim
