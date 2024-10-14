@@ -3,6 +3,8 @@
 
 *Using code from HWs 5 and 6*
 
+*I incorporated my screenshots again because I used different data than in Homework 5 and 6*
+
 ## Background
 
 **Bacteria of Interest**
