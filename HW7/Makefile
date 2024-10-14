@@ -11,7 +11,7 @@ MAKEFLAGS += --no-builtin-rules
 
 
 #Set Paths for reproducibility
-HOME_DIR = ~/work/BMMB_852/HW7
+HOME_DIR = HW7
 ACC = GCF_000006945.2
 N = 10000
 SRR = SRR1963625
@@ -34,6 +34,9 @@ usage:
 genome:
 	#change to home directory
 	cd $(HOME_DIR)
+
+	#make home directory if necessary
+	mkdir -p $(HOME_DIR)
 
 	#get Salmonella Typhimurium LT2 assembly from NCBI 
 	efetch -db genome -format fasta -email sls6550@psu.edu -id $(ACC) > ST_LT2_assembly.fasta
