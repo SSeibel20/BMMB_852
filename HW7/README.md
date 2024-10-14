@@ -72,27 +72,18 @@ micromamba activate environment
 
 #I had issues with the efetch command (one my lab uses) I couldn't resolve
 
-![Screenshot](HW7_Screenshot2.png)
-
 #Used the datasets command provided in the biostar handbook
 
-![Screenshot](HW7_Screenshot.png)
-
 *simulate*
-![Screenshot](HW7_Screenshot3.png)
-![Screenshot](HW7_Screenshot4.png)
 
 *download*
-![Screenshot](HW7_Screenshot5.png)
 
 *quality*
-![Screenshot](HW7_Screenshot6.png)
 ![Screenshot](HW7_Screenshot7.png)
 ![Screenshot](HW7_Screenshot8.png)
 ![Screenshot](HW7_Screenshot9.png)
 
 *trim*
-![Screenshot](HW7_Screenshot10.png)
 ![Screenshot](HW7_Screenshot11.png)
 ![Screenshot](HW7_Screenshot12.png)
 
