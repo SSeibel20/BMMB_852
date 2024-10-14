@@ -61,7 +61,7 @@ Fastq gz compresses at a ratio of around 4:1
 
 Human:
 (3,000,000,000 bp * 30X coverage)/150bp = 600,000,000 reads for 30x coverage
-for Drosophila: 600,000,000 * 150 * 4 = 360.0 GB
+for Human: 600,000,000 * 150 * 4 = 360.0 GB
 
 Fastq gz compresses at a ratio of around 4:1
 180.0 GB
