@@ -3,6 +3,8 @@
 
 *Using code from HWs 5 and 6*
 
+## Background
+
 **Bacteria of Interest**
 
 Salmonella Typhimurium LT2
@@ -29,6 +31,8 @@ Submitter: Ruiting Lan from University of New South Wales
 
 Date: April 9th, 2015
 
+## Prior to Makefile
+
 **Code before initiating Makefile**
 
 #activate bioinfo environment
@@ -46,7 +50,7 @@ download: downloads subset of fastq files from select reads from NCBI SRA databa
 quality: runs fastqc on downloaded files
 trim: trims fastq files with fastp based of output of fastqc then reruns fastqc
 
-**Running the Makefile**
+## Running the Makefile
 
 *usage*
 ![Screenshot](HW7_Screenshot1.png)
