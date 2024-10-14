@@ -19,7 +19,9 @@ Submitter: Washington University Genome Sequencing Center
 Date: Jan 13, 2016
 
 **Code before initiating Makefile**
+
 #activate bioinfo environment
+
 micromamba activate environment
 
 **Constructing a Makefile using the following**
