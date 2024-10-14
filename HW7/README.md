@@ -51,7 +51,7 @@ trim: trims fastq files with fastp based of output of fastqc then reruns fastqc
 ![Screenshot](HW7_Screenshot9.png)
 
 *trim*
-![Screenshot](HW7_Screenshot6.png)
+![Screenshot](HW7_Screenshot10.png)
 
 
 
