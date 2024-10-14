@@ -37,8 +37,10 @@ Date: April 9th, 2015
 
 **Code before initiating Makefile**
 
-`#activate bioinfo environment
-micromamba activate environment`
+```bash
+#activate bioinfo environment
+
+micromamba activate environment ```
 
 **Constructing a Makefile using the following**
 
