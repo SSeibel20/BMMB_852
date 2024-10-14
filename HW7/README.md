@@ -47,17 +47,19 @@ micromamba activate environment
 
 *Targets*
 
-usage: defines each target for user
+**usage**: defines each target for user
 
-genome: downloads assembly of selected organism
+**genome**: downloads assembly of selected organism
 
-simulate: generates simulated fastq reads from the assembly
+**simulate**: generates simulated fastq reads from the assembly
 
-download: downloads subset of fastq files from select reads from NCBI SRA database
+**download**: downloads subset of fastq files from select reads from NCBI SRA database
 
-quality: runs fastqc on downloaded files
+**quality**: runs fastqc on downloaded files
 
-trim: trims fastq files with fastp based of output of fastqc then reruns fastqc
+**trim**: trims fastq files with fastp based of output of fastqc then reruns fastqc
+
+**all**: runs all of the above targets
 
 ## Running the Makefile
 
