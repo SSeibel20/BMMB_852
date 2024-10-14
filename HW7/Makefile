@@ -39,7 +39,7 @@ genome:
 	datasets download genome accession $(ACC) --filename ST_LT2_assembly.zip
 
 	#Unzip the assembly file
-	unzip ST_LT2_assembly.zip -d ST_LT2_assembly
+	unzip -n ST_LT2_assembly.zip -d ST_LT2_assembly
 
 	#Extract the FASTA file
 	mv ST_LT2_assembly/ncbi_dataset/data/$(ACC)/*.fna ST_LT2_assembly.fasta
