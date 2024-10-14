@@ -64,9 +64,6 @@ micromamba activate environment
 ## Running the Makefile
 
 *usage*
-![Screenshot](HW7_Screenshot1.png)
-
-
 
 *genome*
 
@@ -79,9 +76,9 @@ micromamba activate environment
 *download*
 
 *quality*
+![Screenshot](HW7_Screenshot6.png)
 ![Screenshot](HW7_Screenshot7.png)
 ![Screenshot](HW7_Screenshot8.png)
-![Screenshot](HW7_Screenshot9.png)
 
 *trim*
 ![Screenshot](HW7_Screenshot11.png)
