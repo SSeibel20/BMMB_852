@@ -40,7 +40,8 @@ Date: April 9th, 2015
 ```bash
 #activate bioinfo environment
 
-micromamba activate environment ```
+micromamba activate environment
+```
 
 **Constructing a Makefile using the following**
 
