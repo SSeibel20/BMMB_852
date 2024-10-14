@@ -64,5 +64,5 @@ Human:
 for Human: 600,000,000 * 150 * 4 = 360.0 GB
 
 Fastq gz compresses at a ratio of around 4:1
-180.0 GB
+90.0 GB
 
