@@ -63,17 +63,9 @@ micromamba activate environment
 
 ## Running the Makefile
 
-*usage*
+I had issues with the efetch command (one my lab uses) I couldn't resolve
 
-*genome*
-
-#I had issues with the efetch command (one my lab uses) I couldn't resolve
-
-#Used the datasets command provided in the biostar handbook
-
-*simulate*
-
-*download*
+Used the datasets command provided in the biostar handbook
 
 *quality*
 ![Screenshot](HW7_Screenshot6.png)
