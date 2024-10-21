@@ -7,7 +7,7 @@
 
 **Reference**
 
-Salmonella Typhimurium LT2
+Salmonella Typhimurium (ST) LT2
 
 NCBI RefSeq assembly: GCF_000006945.2
 
@@ -71,4 +71,6 @@ The only visual overlap from the LT2 reference
 ## Samtools Stats
 
 All reads aligned for the simulated reads, but only 15403/17808 map of the ST from SRA
+
+I was confused why there wasn't more overlap between the ST reads from SRA and the LT2 reference as NCBI Genomes starred this as their reference
 
