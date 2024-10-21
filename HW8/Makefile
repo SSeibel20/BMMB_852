@@ -157,6 +157,9 @@ align:
 	@echo "Simulated reads aligned, indexed, and sorted"
 
 all: usage genome simulate download quality trim index align
+clean:
+	rm -rf QUALITY FASTQ_INDIR FASTP_OUTDIR FASTA
+	@echo "All extraneous files have been removed"
 
 #Mark the targets that do not create files.
 .PHONY: usage genome simulate download quality trim index align
