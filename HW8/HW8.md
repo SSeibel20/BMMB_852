@@ -49,7 +49,7 @@ micromamba activate environment
 
 **index**: uses BWA to make an index from the ST LT2 reference
 
-**align**: 
+**align**: using samtools, create an alignment of both ST and simulated reads against reference, convert to a sorted, indexed BAM file, run stats
 
 **all**: runs all of the above targets
 
