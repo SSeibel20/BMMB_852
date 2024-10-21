@@ -25,12 +25,16 @@ T1 = $(FASTP_OUTDIR)/${SRR}_1_trimmed.fastq.gz
 T2 = $(FASTP_OUTDIR)/${SRR}_2_trimmed.fastq.gz
 FASTA = ST_LT2_assembly.fasta
 
+##--------------------------------------------##
+
 usage:
 	@echo "Define variables"
 	@echo "make genome       #Download Salmonella Typhimurium LT2 genome assembly"
 	@echo "make simulate     #Simulate FASTQ reads based on downloaded assembly"
 	@echo "make download     #Download reads from SRA database and run quality control"
 	@echo "make trim         #Trim reads and run quality control post-trimming"
+
+##--------------------------------------------##
 
 genome:
 	#make home directory if necessary
@@ -85,6 +89,8 @@ simulate:
 	@echo "Size of zipped files (1 and 2, respectively)"
 	@ls -lh sim_1.fastq.gz sim_2.fastq.gz
 
+##--------------------------------------------##
+
 download:
 	#Make directory for data to download
 	mkdir -p $(FASTQ_INDIR)
@@ -121,6 +127,8 @@ trim:
 	#Compare fastqc.html files before and after trimming
 	@echo "Compare fastqc results to ensure correct trimming"
 
+##--------------------------------------------##
+
 index:
 	#go to home directory
 	cd $(HOME_DIR)
@@ -155,6 +163,8 @@ align:
 	samtools index sorted_st.bam
 	samtools stats aligned_st.bam > alignment_stats_st.txt
 	@echo "Simulated reads aligned, indexed, and sorted"
+
+##--------------------------------------------##
 
 all: usage genome simulate download quality trim index align
 clean:
