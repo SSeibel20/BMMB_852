@@ -53,11 +53,6 @@ micromamba activate environment
 
 **all**: runs all of the above targets
 
-## Running the Makefile
-
-I had issues with the efetch command (one my lab uses) I couldn't resolve
-
-Used the datasets command provided in the biostar handbook
 
 ## Visualize in IGV
 
