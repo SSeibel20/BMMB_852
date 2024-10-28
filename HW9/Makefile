@@ -2,6 +2,7 @@
 #Part 1: Simulate reads
 #Part 2: Download reads from NCBI SRA Database and analyze
 #Part 3: Align simulated and trimmed reads to a reference
+#Part 4: Filter the BAM file
 
 SHELL := bash
 .ONESHELL:
@@ -199,9 +200,9 @@ filter:
 	samtools flagstat $(SAM)/filtered.bam
 
 ##--------------------------------------------##
-all: usage genome simulate download quality trim index align evaluate
+all: usage genome simulate download quality trim index align evaluate filter
 clean:
-	rm -rf QUALITY FASTQ_INDIR FASTP_OUTDIR FASTA 
+	rm -rf QUALITY FASTQ_INDIR FASTP_OUTDIR FASTA SAM S1 S2
 	@echo "All extraneous files have been removed"
 
 #Mark the targets that do not create files.
