@@ -202,7 +202,7 @@ filter:
 ##--------------------------------------------##
 all: usage genome simulate download quality trim index align evaluate filter
 clean:
-	rm -rf QUALITY FASTQ_INDIR FASTP_OUTDIR FASTA SAM S1 S2
+	rm -rf $(QUALITY) $(FASTQ_INDIR) $(FASTP_OUTDIR) $(FASTA) $(SAM) $(S1) $(S2)
 	@echo "All extraneous files have been removed"
 
 #Mark the targets that do not create files.
