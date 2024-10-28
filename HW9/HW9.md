@@ -1,4 +1,4 @@
-# Homework 8: Making a BAM file
+# Homework 9: Filtering a BAM File
 *Samantha Seibel October 27th, 2024*
 
 *Using code from HWs 8*
@@ -111,6 +111,9 @@ samtools flagstat your_file.bam
 samtools flagstat filtered.bam
 ```
 
+![Screenshot](HW9_Screenshot.png)
+
+**As seen above, the filtering of the BAM file reduces the number of reads included, but also removes the singletons, and increases the percentage of reads that properly pair and map to the reference**
 
 
 
