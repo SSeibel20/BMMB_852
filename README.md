@@ -12,3 +12,4 @@ Written by Samantha Seibel
 - **HW 7**: Write a Makefile
 - **HW 8**: Generate a BAM alignment file
 - **HW 9**: Filter a BAM alignment file
+- **HW 10**: Generating a Variant Call File
