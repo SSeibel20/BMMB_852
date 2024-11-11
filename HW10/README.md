@@ -73,6 +73,12 @@ This installs a directory called src which contains makefiles necessary to run s
 
 From there I was able to visualize some of the variants produced from both the previously simulated. 
 
+### For Context
+
+Here is what the layout is for the tracks of IGV. I wanted to also examine the pre-filtered BAM to see if there were clear visuals of data being removed (confirmed by eye!)
+
+![Screenshot](HW10_Screenshot7.png)
+
 I found SNP variations:
 
 I was a bit more convinced by the following SNPs as potentially being deviations from the reference rather than sequencing error
