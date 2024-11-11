@@ -15,7 +15,7 @@ MAKEFLAGS += --no-builtin-rules
 
 #Set Paths for reproducibility
 HOME_DIR = HW10
-ACC = GCF_000006945.2
+ACC = GCA_000006945.2
 N = 10000
 SRR = SRR1963625
 QUALITY = $(HOME_DIR)/Quality
@@ -48,17 +48,17 @@ genome:
 	mkdir -p $(HOME_DIR)
 	
 	#Salmonella Typhimurium LT2 assembly from NCBI
-	datasets download genome accession $(ACC) --filename ST_LT2_assembly.zip
+	datasets download genome accession $(ACC) --filename $(HOME_DIR)/ST_LT2_assembly.zip
 
 	#Unzip the assembly file
-	unzip -n ST_LT2_assembly.zip -d ST_LT2_assembly
+	unzip -n $(HOME_DIR)/ST_LT2_assembly.zip -d $(HOME_DIR)/ST_LT2_assembly
 
 	#Extract the FASTA file
-	mv ST_LT2_assembly/ncbi_dataset/data/$(ACC)/*.fna ST_LT2_assembly.fasta
+	mv $(HOME_DIR)/ST_LT2_assembly/ncbi_dataset/data/$(ACC)/*.fna $(HOME_DIR)/ST_LT2_assembly.fasta
 
 	#Remove all extraneous information, leaving just the .fasta files
-	rm -rf ST_LT2_assembly/data/$(ACC)
-	rm -f md5sum.txt ST_LT2_assembly.zip
+	rm -rf $(HOME_DIR)/ST_LT2_assembly/data/$(ACC)
+	rm -f md5sum.txt $(HOME_DIR)/ST_LT2_assembly.zip
 
 
 simulate:
