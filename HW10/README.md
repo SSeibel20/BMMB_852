@@ -62,12 +62,21 @@ micromamba activate environment
 
 ## Identifying Variants
 
-Command to use:
+Generated a variant call file utilizing tools from the Bioinformatics Toolbox
+
+Command to call the tool box:
 ```
-samtools flagstat sorted_st.bam
+bio code
 ```
 
-![Screenshot](HW9_Screenshot.png)
+This installs a directory called src which contains makefiles necessary to run specific pipelines like VCF.
+
+From there I was able to visualize some of the variants produced from both the previously simulated 
+
+Ex: SRR1963625.9144 
+SRR1963625.9144
+
+![Screenshot](HW10_Screenshot1.png)
 
 
 
