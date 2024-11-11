@@ -71,13 +71,37 @@ bio code
 
 This installs a directory called src which contains makefiles necessary to run specific pipelines like VCF.
 
-From there I was able to visualize some of the variants produced from both the previously simulated 
+From there I was able to visualize some of the variants produced from both the previously simulated. 
 
-Ex: SRR1963625.9144 
-SRR1963625.9144
+I found SNP variations:
+
+I was a bit more convinced by the following SNPs as potentially being deviations from the reference rather than sequencing error
+
+![Screenshot](HW10_Screenshot2.png)
+
+![Screenshot](HW10_Screenshot5.png)
+
+*Both of these had all four variants be different from the reference which increased my confidence in this position being a SNP in my sample*
+
+However, in position 54,289, there were only two variants called, making me less confident and more wondering if this SNP was a false positive
 
 ![Screenshot](HW10_Screenshot1.png)
 
+*However, in position 54,272, there were only two of four variants called a SNP (A) from the original reference of C, decreasing my confidence in SNP calling*
+
+![Screenshot](HW10_Screenshot6.png)
+
+I also located some indels within my variants:
+
+![Screenshot](HW10_Screenshot3.png)
+![Screenshot](HW10_Screenshot4.png)
+
+*My confidence in this being a real variant is lower especially for the indel that only occurred in one variant*
+
+## To increase confidence
+
+- I should create other BAM files of *Salmonella* Typhimurium and compare to this reference to increase my understanding of how accurate this reference is to the isolate sequences.
+- There is not much coverage from the initial alignment (not a significant amount of similarity between the data I downloaded and the reference. This analysis could benefit from an accession that's more recent (which could mean higher quality and depth)
 
 
 
