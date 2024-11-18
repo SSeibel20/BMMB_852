@@ -1,7 +1,7 @@
-# Homework 10: Generate a variant call file
-*Samantha Seibel November 10th, 2024*
+# Homework 11: Generate a variant call file
+*Samantha Seibel November 17th, 2024*
 
-*Using code from HW 9*
+*Using code from HW 10*
 
 ## Background
 
@@ -57,14 +57,19 @@ micromamba activate environment
 
 **vcf** create the variant call file
 
+**vep** interpret variant effect
+
 **all**: runs all of the above targets
 
 
 ## Identifying Variants
 
-Command to use:
+Command to use specifically for vep:
 ```
-samtools flagstat sorted_st.bam
+cd . #whatever working directory is
+git clone https://github.com/Ensembl/ensembl-vep.git
+cd ensembl-vep
+perl INSTALL.pl
 ```
 
 ![Screenshot](HW9_Screenshot.png)
