@@ -32,7 +32,8 @@ S1 = sim_1.fastq.gz
 S2 = sim_2.fastq.gz
 BAM = $(SAM)/filtered.bam
 VCF = $(HOME_DIR)/ST.vcf.gz
-VEP= $(HOME_DIR)/ST.vef
+VEP = $(HOME_DIR)/ST.vef
+GFF = $(HOME_DIR)/ST_LT2.gff3
 
 ##--------------------------------------------##
 
@@ -50,13 +51,14 @@ genome:
 	mkdir -p $(HOME_DIR)
 	
 	#Salmonella Typhimurium LT2 assembly from NCBI
-	datasets download genome accession $(ACC) --filename $(HOME_DIR)/ST_LT2_assembly.zip
+	datasets download genome accession $(ACC) --include gff3,fasta --filename $(HOME_DIR)/ST_LT2_assembly.zip
 
 	#Unzip the assembly file
 	unzip -n $(HOME_DIR)/ST_LT2_assembly.zip -d $(HOME_DIR)/ST_LT2_assembly
 
 	#Extract the FASTA file
 	mv $(HOME_DIR)/ST_LT2_assembly/ncbi_dataset/data/$(ACC)/*.fna $(HOME_DIR)/ST_LT2_assembly.fasta
+	mv $(HOME_DIR)/ST_LT2_assembly/ncbi_dataset/data/$(ACC)/*.gff3 $(HOME_DIR)/ST_LT2.gff3
 
 	#Remove all extraneous information, leaving just the .fasta files
 	rm -rf $(HOME_DIR)/ST_LT2_assembly/data/$(ACC)
@@ -204,18 +206,27 @@ vcf:
 	# make home directory if necessary
 	mkdir -p $(HOME_DIR)
 	
-	make -f src/run/bcftools.mk REF=${FASTA} BAM=${BAM} VCF=${VCF} run
+	make -f src/run/bcftools.mk REF=$(FASTA) BAM=$(BAM) VCF=$(VCF) run
 ##--------------------------------------------##
-# Establish the effects of the variants
+# Establish the effects of the variants NOT WORKING
 vep:
 	cd . #current dir
 	git clone https://github.com/Ensembl/ensembl-vep.git #cloning of ensembl vep
 	cd ensembl-vep #move into dir
 	perl INSTALL.pl #install perl script
 	./vep ${VCF} --cache --force_overwrite #run
+##--------------------------------------------##
+# Establish the effects of the variants
+snpEff:
+	snpEff databases > listing.txt # List all available databases
+	cat listing.txt | grep Salmonella_enterica_subsp_enterica_serovar_typhimurium  # find Salmonella Typhimurium
+	datasets download genome accession ${ACC} --include gff3
+	mv 
+	src/run/snpeff.mk GFF=$(GFF) REF=$(FASTA) build # too many make own SnpEff in the toolbox
+	src/run/snpeff.mk GFF=$(GFF) REF=$(FASTA) VCF=$(VCF) run # run with new ref
 
 ##--------------------------------------------##
-all: usage genome simulate download quality trim index align evaluate filter vcf vep
+all: usage genome simulate download quality trim index align evaluate filter vcf snpEff
 clean:
 	rm -rf $(QUALITY) $(FASTQ_INDIR) $(FASTP_OUTDIR) $(FASTA) $(SAM) $(S1) $(S2)
 	@echo "All extraneous files have been removed"
