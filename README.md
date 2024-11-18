@@ -13,3 +13,4 @@ Written by Samantha Seibel
 - **HW 8**: Generate a BAM alignment file
 - **HW 9**: Filter a BAM alignment file
 - **HW 10**: Generating a Variant Call File
+- **HW 11**: Establish the effects of variants
