@@ -57,19 +57,18 @@ micromamba activate environment
 
 **vcf** create the variant call file
 
-**vep** interpret variant effect
+**snpEff** interpret variant effect
 
 **all**: runs all of the above targets
 
 
 ## Identifying Variants
 
-Command to use specifically for vep:
+Command to use specifically for snpEff:
 ```
-cd . #whatever working directory is
-git clone https://github.com/Ensembl/ensembl-vep.git
-cd ensembl-vep
-perl INSTALL.pl
+cd ~ # whatever home directory is
+bio code # get the biostar handbook toolbox to run snpEff
+chmod +x snpeff.mk # to make the make executable
 ```
 
 ![Screenshot](HW9_Screenshot.png)
