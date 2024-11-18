@@ -208,7 +208,11 @@ vcf:
 ##--------------------------------------------##
 # Establish the effects of the variants
 vep:
-	/Users/sls6550/work/BMMB_852/ensembl-vep/vep ${VCF} --cache --force_overwrite
+	cd . #current dir
+	git clone https://github.com/Ensembl/ensembl-vep.git #cloning of ensembl vep
+	cd ensembl-vep #move into dir
+	perl INSTALL.pl #install perl script
+	./vep ${VCF} --cache --force_overwrite #run
 
 ##--------------------------------------------##
 all: usage genome simulate download quality trim index align evaluate filter vcf vep
