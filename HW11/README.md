@@ -71,7 +71,7 @@ bio code # get the biostar handbook toolbox to run snpEff
 chmod +x snpeff.mk # to make the make executable
 ```
 
-![Screenshot](HW9_Screenshot.png)
+![Screenshot](HW11.png)
 
 
 
