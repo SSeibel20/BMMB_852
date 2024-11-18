@@ -51,7 +51,7 @@ genome:
 	mkdir -p $(HOME_DIR)
 	
 	#Salmonella Typhimurium LT2 assembly from NCBI
-	datasets download genome accession $(ACC) --include gff3 --filename $(HOME_DIR)/ST_LT2_assembly.zip
+	datasets download genome accession $(ACC) --include gff3, genome --filename $(HOME_DIR)/ST_LT2_assembly.zip
 
 	#Unzip the assembly file
 	unzip -n $(HOME_DIR)/ST_LT2_assembly.zip -d $(HOME_DIR)/ST_LT2_assembly
