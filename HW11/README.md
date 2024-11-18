@@ -73,6 +73,7 @@ chmod +x snpeff.mk # to make the make executable
 
 ![Screenshot](HW11.png)
 
+![Screenshot](HW11_2.png)
 
 
 
