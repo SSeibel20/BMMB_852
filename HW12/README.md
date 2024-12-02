@@ -90,7 +90,10 @@ micromamba activate environment
 
 ## Using GNU Parallel to create multiple VCFs
 
+There appear to be a significant amount of variants (SNPs) between the different samples and the reference. There is not a lot of coverage from the samples on the LT2 reference implying to me that LT2 may not be the best reference for this. Interestingly as well, there is not a lot of concordance between the samples either. There does not appear to be two distinct groups like implied in the BioProject's abstract, which you'd expect if these were from the same strain, but the reference may be confusing that.
+
 ![Screenshot](Merged_VCF.png)
+![Screenshot](Merged_VCF2.png)
 
 
 
