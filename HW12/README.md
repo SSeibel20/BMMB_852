@@ -90,7 +90,7 @@ micromamba activate environment
 
 ## Using GNU Parallel to create multiple VCFs
 
-
+![Screenshot](Merged_VCF.png)
 
 
 
