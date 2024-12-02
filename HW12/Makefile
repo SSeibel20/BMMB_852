@@ -13,14 +13,15 @@ MAKEFLAGS += --no-builtin-rules
 HOME_DIR = HW12
 ACC = GCA_000006945.2
 N = 1000
-SRR = $(HOME_DIR)/ST_SRR.txt
+SRR_LIST = $(HOME_DIR)/design.csv
+SRR = ST_SRR.csv
 QUALITY = $(HOME_DIR)/Quality
 FASTQ_INDIR = $(HOME_DIR)/Data
-R1 = $(FASTQ_INDIR)/${SRR}_1.fastq.gz
-R2 = $(FASTQ_INDIR)/${SRR}_2.fastq.gz
+R1 = $(FASTQ_INDIR)/$(SRR)_1.fastq.gz
+R2 = $(FASTQ_INDIR)/$(SRR)_2.fastq.gz
 FASTP_OUTDIR = $(HOME_DIR)/fastp_filt
-T1 = $(FASTP_OUTDIR)/${SRR}_1_trimmed.fastq.gz
-T2 = $(FASTP_OUTDIR)/${SRR}_2_trimmed.fastq.gz
+T1 = $(FASTP_OUTDIR)/$(SRR)_1_trimmed.fastq.gz
+T2 = $(FASTP_OUTDIR)/$(SRR)_2_trimmed.fastq.gz
 FASTA = $(HOME_DIR)/ST_LT2_assembly.fasta
 SAM = $(HOME_DIR)/SAM_BAM
 BAM = $(SAM)/filtered.bam
@@ -42,24 +43,20 @@ usage:
 
 ##--------------------------------------------##
 design:
-	# Ensure design.csv is generated first
-	bio search PRJNA1119266 -H --csv > design.csv
-
-	# Filter design.csv to keep only the SRRs listed in ST_SRR.txt
-	awk -F, 'NR==FNR {s[$1]; next} $1 in s' $(SRR) design.csv > filtered_design.csv
+	bio search PRJNA248792 -H --csv --limit 25 > $(HOME_DIR)/design.csv
+	awk -F, 'NR>1 {print $$1}' $(SRR_LIST) > ST_SRR.csv
 
 ##--------------------------------------------##
 dry-run:
-	cat filtered_design.csv | \
-	parallel --dry-run --bar --eta --lb -j 4 --colsep , --header : \
-		make all SRR={run_accession}
+	head -10 $(SRR) | \
+	parallel --dry-run --lb -j 4 --colsep , --header : \
+	"make download trim index align filter vcf SRR={1}"
 
 ##--------------------------------------------##
-# Parallel execution to process SRR entries
 parallel:
-	cat $(SRR) | \
-	parallel --bar --eta --lb -j 4 \
-		make all SRR={}
+	head -10 $(SRR) | \
+	parallel --lb -j 4 --colsep , --header : \
+	"make download trim index align filter vcf SRR={1}"
 
 ##--------------------------------------------##
 genome:
@@ -87,13 +84,13 @@ download:
 	mkdir -p $(FASTQ_INDIR)
 
 	#Need to use prefetch to download SRR files
-	prefetch --option-file $(SRR) --output-directory $(FASTQ_INDIR)
+	prefetch $(SRR) --output-directory $(FASTQ_INDIR)
 
 	#Run fastq-dump for each SRR in the list
-	cat $(SRR) | xargs -I {} fastq-dump -X $(N) --split-files -O $(FASTQ_INDIR) {}
+	fastq-dump -X $(N) --split-files -O $(FASTQ_INDIR) $(SRR)
 
 	#GZip incoming files to preserve space
-	gzip $(FASTQ_INDIR)/*.fastq
+	gzip $(FASTQ_INDIR)/$(SRR)*.fastq
 
 quality:
 	#Create directory for quality checking
@@ -106,16 +103,19 @@ quality:
 	@echo "Compare fastqc results to define trimming parameters"
 
 trim:
-	# Create fastp output directory
+	#Make directory for data to be stored
 	mkdir -p $(FASTP_OUTDIR)
 
-	# Run fastp for filtering and trimming
-	fastp -r -q 20 -i $(FASTQ_INDIR)/$(SRR)_1.fastq.gz -I $(FASTQ_INDIR)/$(SRR)_2.fastq.gz \
-	      -o $(TRIMMED_R1) -O $(TRIMMED_R2)
-
-	# Run FastQC on trimmed files
-	mkdir -p $(QUALITY)/trim_$(SRR)
-	fastqc $(TRIMMED_R1) $(TRIMMED_R2) -o $(QUALITY)/trim_$(SRR)
+	#Run fastp to trim reads
+	fastp -r -q 20 \
+		-i $(FASTQ_INDIR)/$(SRR)_1.fastq.gz \
+		-I $(FASTQ_INDIR)/$(SRR)_2.fastq.gz \
+		-o $(FASTP_OUTDIR)/$(SRR)_1_trimmed.fastq.gz \
+		-O $(FASTP_OUTDIR)/$(SRR)_2_trimmed.fastq.gz
+	
+	#Run fastqc on trimmed files and store in individual directories
+	mkdir -p $(QUALITY)/$(SRR)
+	fastqc $(FASTP_OUTDIR)/$(SRR)_*.fastq.gz -o $(QUALITY)/$(SRR)
 
 ##--------------------------------------------##
 
@@ -135,7 +135,7 @@ align:
 	mkdir -p $(SAM)
 
 	# Align reads using BWA MEM
-	bwa mem -t 4 $(FASTA) $(TRIMMED_R1) $(TRIMMED_R2) > $(ALIGNED_BAM)
+	bwa mem -t 4 $(FASTA) $(T1) $(T2) > $(ALIGNED_BAM)
 
 	# Convert to BAM, sort, and index
 	samtools view -bS $(ALIGNED_BAM) > $(SORTED_BAM)
@@ -169,10 +169,10 @@ vcf:
 ##--------------------------------------------##
 merge:
 	# Merge VCF files into a single one.
-	bcftools merge -0 vcf/*.vcf.gz -O z > merged.vcf.gz
+	bcftools merge -0 $(RES)/*.vcf.gz -O z > $(RES)/merged.vcf.gz
 
 	# Index the merged VCF file
-	bcftools index merged.vcf.gz
+	bcftools index $(RES)/merged.vcf.gz
 
 ##--------------------------------------------##
 all: usage genome  download quality trim index align evaluate filter vcf 
