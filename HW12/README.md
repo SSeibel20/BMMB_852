@@ -55,6 +55,7 @@ List of SRRs:
 micromamba activate environment
 ```
 **Make sure to run genome, design, and dry run before running parallel**
+
 **Merge target needs to be run after parallel has finished!**
 
 ## Constructing a Makefile using the following
