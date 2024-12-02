@@ -186,7 +186,7 @@ merge:
 	bcftools index $(RES)/merged.vcf.gz
 
 ##--------------------------------------------##
-run: download quality trim index align evaluate filter vcf 
+run: download quality trim index align filter vcf 
 all: usage genome download quality trim index align filter vcf merge
 clean:
 	rm -rf $(QUALITY) $(FASTQ_INDIR) $(FASTP_OUTDIR) $(FASTA) $(SAM) $(VCF) $(GFF) $(RES)
