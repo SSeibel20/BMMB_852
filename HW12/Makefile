@@ -28,9 +28,10 @@ BAM = $(SAM)/filtered.bam
 ALIGNED_BAM = $(SAM)/$(SRR).aligned.bam
 SORTED_BAM = $(SAM)/$(SRR).sorted.bam
 FILTERED_BAM = $(SAM)/$(SRR).filtered.bam
-VCF_FILE = $(RES)/$(SRR).vcf.gz
+VCF_FILE = $(RES)/*.vcf.gz
 GFF = $(HOME_DIR)/ST_LT2.gff3
-RES = $(HOME_DIR)/results 
+RES = $(HOME_DIR)/results
+MERGE = $(RES)/merged.vcf.gz
 
 ##--------------------------------------------##
 
@@ -170,17 +171,23 @@ filter:
 ##--------------------------------------------##
 # Call the SNPs in the resulting BAM file.
 vcf:
-	# Call SNPs and generate VCF file
-	bcftools mpileup -Ou -f $(FASTA) $(FILTERED_BAM) | \
-	bcftools call -mv -Oz -o $(VCF_FILE)
+	# Make sure the results directory exists
+	mkdir -p $(RES)
 
-	# Index the VCF file
-	bcftools index $(VCF_FILE)
+	# Call SNPs and generate VCF file for each BAM file individually
+	for BAM in HW12/SAM_BAM/*.filtered.bam; do \
+		SRR=$$(basename $$BAM); \
+		VCF_FILE=HW12/results/$$SRR.vcf.gz; \
+		echo "Processing $$SRR"; \
+		bcftools mpileup -Ou -f HW12/SAM_BAM/ST_LT2_assembly.fasta $$BAM | \
+		bcftools call -mv -Oz -o $$VCF_FILE; \
+		bcftools index $$VCF_FILE; \
+	done
 
 ##--------------------------------------------##
 merge:
-	# Merge VCF files into a single one.
-	bcftools merge -0 $(RES)/*.vcf.gz -O z > $(RES)/merged.vcf.gz
+	# Merge VCF files into a single one
+	bcftools merge -0 $(VCF_FILE) -Oz -o $(MERGE)
 
 	# Index the merged VCF file
 	bcftools index $(RES)/merged.vcf.gz
