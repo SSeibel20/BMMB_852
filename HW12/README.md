@@ -24,25 +24,24 @@ Date: Jan 13, 2016
 
 **Downloaded Data**
 
-*Genomic diversity of Salmonella enterica serovar Typhimurium isolated from chicken processing facilities in New South Wales, Australia*
+*This BioProject contains the whole genome sequence data uploaded by the Salmonella Reference Service (Gastrointestinal Bacteria Reference Unit), Public Health England.*
 
-Date: 3-Jun-2024
+BioProject: PRJNA248792
+Registration date: 7-Dec-2018
+Public Health England
 
-University of New South Wales
-
-**Needed to download individual SRRs from this project because some of the data was from Nanopore sequencing and I didn't want that to affect the alignment**
 
 List of SRRs:
-SRR29260553
-SRR29260554
-SRR29260555
-SRR29260556
-SRR29260557
-SRR29260558
-SRR29260559
-SRR29260560
-SRR29260561
-SRR29260562
+- SRR29260553
+- SRR29260554
+- SRR29260555
+- SRR29260556
+- SRR29260557
+- SRR29260558
+- SRR29260559
+- SRR29260560
+- SRR29260561
+- SRR29260562
 
 ## Prior to Makefile
 
@@ -76,9 +75,13 @@ micromamba activate environment
 
 **vcf** create the variant call file
 
-**snpEff** interpret variant effect
-
 **all**: runs all of the above targets
+
+**design**: creates a csv with all the important metadata for each SRR from a chosen BioProject ID
+
+**dry-run**: runs a dry run on the parallel command
+
+**parallel**: runs each SRR through the full pipeline in unison
 
 
 ## Using GNU Parallel to create multiple VCFs
