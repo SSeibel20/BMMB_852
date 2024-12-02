@@ -70,7 +70,7 @@ genome:
 
 ##--------------------------------------------##
 design:
-	bio search PRJNA248792 -H --csv --limit 25 > $(HOME_DIR)/design.csv
+	bio search PRJNA213246 -H --csv > $(HOME_DIR)/design.csv
 	awk -F, 'NR>1 {print $$1}' $(SRR_LIST) > ST_SRR.csv
 
 ##--------------------------------------------##
@@ -80,7 +80,7 @@ dry-run:
 	make run SRR={1}
 
 ##--------------------------------------------##
-parallel:
+parallel: genome design
 	head -10 $(SRR) | \
 	parallel --lb -j 4 --colsep , --header : \
 	make run SRR={1}
@@ -97,8 +97,9 @@ download:
 	#Run fastq-dump for each SRR in the list
 	fastq-dump -X $(N) --split-files -O $(FASTQ_INDIR) $(SRR)
 
-	#GZip incoming files to preserve space
-	gzip $(FASTQ_INDIR)/$(SRR)*.fastq
+	# GZip incoming files to preserve space, only if not already gzipped
+	if [ ! -f $(FASTQ_INDIR)/$(SRR)_1.fastq.gz ]; then gzip $(FASTQ_INDIR)/$(SRR)_1.fastq; fi
+	if [ ! -f $(FASTQ_INDIR)/$(SRR)_2.fastq.gz ]; then gzip $(FASTQ_INDIR)/$(SRR)_2.fastq; fi
 
 quality:
 	#Create directory for quality checking
@@ -137,13 +138,15 @@ index:
 	# Move the output files to the SAM_BAM directory
 	mv $(HOME_DIR)/ST_LT2_assembly.fasta.* $(SAM)
 
+	# Copy the original FASTA
+	cp $(FASTA) $(SAM)
 	
 align:
 	# Make SAM_BAM directory 
 	mkdir -p $(SAM)
 
 	# Align reads using BWA MEM
-	bwa mem -t 4 $(FASTA) $(T1) $(T2) > $(ALIGNED_BAM)
+	bwa mem -t 4 $(SAM)/ST_LT2_assembly.fasta $(T1) $(T2) > $(ALIGNED_BAM)
 
 	# Convert to BAM, sort, and index
 	samtools view -bS $(ALIGNED_BAM) > $(SORTED_BAM)

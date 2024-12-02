@@ -24,11 +24,13 @@ Date: Jan 13, 2016
 
 **Downloaded Data**
 
-*This BioProject contains the whole genome sequence data uploaded by the Salmonella Reference Service (Gastrointestinal Bacteria Reference Unit), Public Health England.*
+*Salmonella enterica serovar Typhimurium genome sequencing of hns mutant evolved strains*
 
-BioProject: PRJNA248792
-Registration date: 7-Dec-2018
-Public Health England
+"H-NS belongs to a group of bacterial regulatory proteins known as xenogeneic silencers that repress the expression of horizontally acquired sequences with higher AT-content than the host genome. By dampening foreign gene expression, H-NS is thought to prevent the potentially harmful effects that unregulated, newly incorporated sequences may impart. In this study we performed experimental evolution to select for mutations that compensate for the strong fitness defects of S. Typhimurium hns mutants. 6 wild type and 6 independent S. Typhimrium hns mutant lineages were serially passaged for 300 generations. To identify the adaptive changes that ensued we applied Illumina whole genome sequencing."
+
+BioProject: PRJNA213246
+Registration date: 24-Jul-2013
+University of Toronto
 
 
 List of SRRs:
