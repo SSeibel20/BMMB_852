@@ -32,6 +32,18 @@ University of New South Wales
 
 **Needed to download individual SRRs from this project because some of the data was from Nanopore sequencing and I didn't want that to affect the alignment**
 
+List of SRRs:
+SRR29260553
+SRR29260554
+SRR29260555
+SRR29260556
+SRR29260557
+SRR29260558
+SRR29260559
+SRR29260560
+SRR29260561
+SRR29260562
+
 ## Prior to Makefile
 
 **Code before initiating Makefile**

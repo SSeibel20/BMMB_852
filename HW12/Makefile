@@ -40,23 +40,14 @@ usage:
 	@echo "make simulate     #Simulate FASTQ reads based on downloaded assembly"
 	@echo "make download     #Download reads from SRA database and run quality control"
 	@echo "make trim         #Trim reads and run quality control post-trimming"
-
-##--------------------------------------------##
-design:
-	bio search PRJNA248792 -H --csv --limit 25 > $(HOME_DIR)/design.csv
-	awk -F, 'NR>1 {print $$1}' $(SRR_LIST) > ST_SRR.csv
-
-##--------------------------------------------##
-dry-run:
-	head -10 $(SRR) | \
-	parallel --dry-run --lb -j 4 --colsep , --header : \
-	"make download trim index align filter vcf SRR={1}"
-
-##--------------------------------------------##
-parallel:
-	head -10 $(SRR) | \
-	parallel --lb -j 4 --colsep , --header : \
-	"make download trim index align filter vcf SRR={1}"
+	@echo "make index        #Index the reference genome"
+	@echo "make align        #Align reads to the reference genome"
+	@echo "make filter       #Filter the aligned reads"
+	@echo "make vcf          #Call SNPs from the filtered reads"
+	@echo "make merge        #Merge the VCF files"
+	@echo "make parallel     #Run all steps in parallel"
+	@echo "make dry-run      #Print the commands that would be run"
+	@echo "make clean        #Remove all extraneous files"
 
 ##--------------------------------------------##
 genome:
@@ -76,6 +67,23 @@ genome:
 	#Remove all extraneous information, leaving just the .fasta files
 	rm -rf $(HOME_DIR)/ST_LT2_assembly/data/$(ACC)
 	rm -f md5sum.txt $(HOME_DIR)/ST_LT2_assembly.zip
+
+##--------------------------------------------##
+design:
+	bio search PRJNA248792 -H --csv --limit 25 > $(HOME_DIR)/design.csv
+	awk -F, 'NR>1 {print $$1}' $(SRR_LIST) > ST_SRR.csv
+
+##--------------------------------------------##
+dry-run:
+	head -10 $(SRR) | \
+	parallel --dry-run --lb -j 4 --colsep , --header : \
+	make run SRR={1}
+
+##--------------------------------------------##
+parallel:
+	head -10 $(SRR) | \
+	parallel --lb -j 4 --colsep , --header : \
+	make run SRR={1}
 
 ##--------------------------------------------##
 
@@ -175,7 +183,8 @@ merge:
 	bcftools index $(RES)/merged.vcf.gz
 
 ##--------------------------------------------##
-all: usage genome  download quality trim index align evaluate filter vcf 
+run: download quality trim index align evaluate filter vcf 
+all: usage genome download quality trim index align filter vcf merge
 clean:
 	rm -rf $(QUALITY) $(FASTQ_INDIR) $(FASTP_OUTDIR) $(FASTA) $(SAM) $(VCF) $(GFF) $(RES)
 	@echo "All extraneous files have been removed"
