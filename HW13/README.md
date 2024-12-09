@@ -1,4 +1,4 @@
-# Homework 12: Generate an RNA-Seq count matrix.
+# Homework 13: Generate an RNA-Seq count matrix.
 *Samantha Seibel December 8th, 2024*
 
 *Using code from HW 12*
@@ -51,6 +51,20 @@ micromamba activate environment
 ```
 **Make sure to run genome, design, and dry run before running parallel**
 
+**Had issues with downloading the rna file via the datasets command, so manual download will have to do**
+
+1. Manually download "GCF_000006945.2_ASM694v2_rna_from_genomic.fna.gz" from NCBI Genomes website
+
+2. Unzip the file and rename it
+
+```bash
+#unzip the fna file
+gunzip GCF_000006945.2_ASM694v2_rna_from_genomic.fna.gz
+
+#rename
+mv GCF_000006945.2_ASM694v2_rna_from_genomic.fna ST_LT2_rna.fasta
+```
+
 **Merge target needs to be run after parallel has finished!**
 
 ## Constructing a Makefile using the following
@@ -84,9 +98,9 @@ micromamba activate environment
 **parallel**: runs each SRR through the full pipeline in unison
 
 
-## Using GNU Parallel to create multiple VCFs
+## Creating an RNA Seq Count Matrix
 
-There appear to be a significant amount of variants (SNPs) between the different samples and the reference. There is not a lot of coverage from the samples on the LT2 reference implying to me that LT2 may not be the best reference for this. Interestingly as well, there is not a lot of concordance between the samples either. There does not appear to be two distinct groups like implied in the BioProject's abstract, which you'd expect if these were from the same strain, but the reference may be confusing that.
+
 
 ![Screenshot](Merged_VCF.png)
 ![Screenshot](Merged_VCF2.png)
