@@ -104,6 +104,11 @@ mv GCF_000006945.2_ASM694v2_rna_from_genomic.fna ST_LT2_rna.fasta
 
 **parallel**: runs each SRR through the full pipeline in unison
 
+**rna_seq**: runs each SRR through the hisat2.mk pipeline in unison for rnaseq analysis
+
+**parallel**: uses r code from biostar handbook to analyze the count matrix from rna_seq
+
+
 
 ## Creating an RNA Seq Count Matrix did not work last time
 ### I have written a Makefile for both human and my Salmonella to try and see if I was causing any issues, but I couldnt resolve the following issue
