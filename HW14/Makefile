@@ -209,6 +209,9 @@ stats:
 	# Create a heatmap using simulated data
 	src/r/plot_heatmap.r -c edger.csv
 
+	# Get significantly differentially expressed genes in a list
+	cat edger.csv | cut -f 1 -d ,  | head -10
+
 
 ##--------------------------------------------##
 run: download quality trim index align filter rna_seq 
