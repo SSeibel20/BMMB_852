@@ -127,6 +127,13 @@ Used workflow with simulated data, had to tweak src R files due to installation 
 
 ## RESULTS FROM SIMULATED DATA
 
+- Significant PVal:  412 ( 8.80 %)
+- Significant FDRs:  157 ( 3.40 %)
+
+- Out of the 244 changes, edger found 157 that match.
+- There are 95 false negatives, genes that were differentially expressed but edger did not find.
+- There are 8 false positives, genes that edger found to be differentially expressed but were not.
+
 ![Screenshot](rnaseq/pca.pdf)
 
 ![Screenshot](rnaseq/heatmap.pdf)
