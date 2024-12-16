@@ -131,6 +131,8 @@ Used workflow with simulated data, had to tweak src R files due to installation 
 
 ![Screenshot](rnaseq/heatmap.pdf)
 
+Due to it being simulated data, the conclusions are tricky. If this was real, a critque could be that an n = 3 for a PCA plot isnt super informative because they have the potential to be significantly influcence by outliers. The grouping wasnt super informative and according to the heatmap, what I am assuming is log fold change implies genes dont have significant decreased or increased expression (the range appears to be -2 to 2 log fold change?)
+
 
 
 
