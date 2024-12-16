@@ -45,9 +45,16 @@ List of SRRs:
 **Code before initiating Makefile**
 
 ```bash
-#activate bioinfo environment
+# activate bioinfo environment
 
 micromamba activate environment
+
+# Get the bioinformatics toolbox
+bio code
+
+# copy hisat2.mk file to your working directory
+# write in your own HOME_DIR (mine is ~/work/BMMB_852/HW13)
+cp ~/src/run/hisat2.mk ${HOME_DIR}/hisat2.mk
 ```
 **Make sure to run genome, design, and dry run before running parallel**
 

@@ -9,7 +9,7 @@ MAKEFLAGS += --no-builtin-rules
 
 
 #Set Paths for reproducibility
-HOME_DIR = HW13
+HOME_DIR = HW14
 ACC = GCA_000006945.2
 N = 1000
 SRR_LIST = $(HOME_DIR)/design.csv
@@ -57,7 +57,7 @@ genome:
 	mkdir -p $(HOME_DIR)
 	
 	#Salmonella Typhimurium LT2 assembly from NCBI
-	datasets download genome accession $(ACC) --include gff3,genome,rna --filename $(HOME_DIR)/ST_LT2_NCBI.zip
+	datasets download genome accession $(ACC) --include gff3,gtf,genome,rna --filename $(HOME_DIR)/ST_LT2_NCBI.zip
 
 	#Unzip the assembly file
 	unzip -n $(HOME_DIR)/ST_LT2_NCBI.zip -d $(HOME_DIR)/ST_LT2_NCBI
@@ -65,6 +65,7 @@ genome:
 	#Extract the FASTA file
 	mv $(HOME_DIR)/ST_LT2_NCBI/ncbi_dataset/data/$(ACC)/*.fna $(HOME_DIR)/ST_LT2_assembly.fasta
 	mv $(HOME_DIR)/ST_LT2_NCBI/ncbi_dataset/data/$(ACC)/*.gff $(HOME_DIR)/ST_LT2.gff3
+	mv $(HOME_DIR)/ST_LT2_NCBI/ncbi_dataset/data/$(ACC)/*.gtf $(HOME_DIR)/ST_LT2.gtf3
 
 	#Remove all extraneous information, leaving just the .fasta files
 	rm -rf $(HOME_DIR)/ST_LT2_NCBI/data/$(ACC)
@@ -175,6 +176,7 @@ rna_seq:
 
 	# copy design file to this dir
 	# cp $(HOME_DIR)/design.csv $(RNA_SEQ)/
+	cp $(HOME_DIR)/ST_LT2.gtf3 $(RNA_SEQ)/refs/
 
 	# Run the alignment for multiple samples
 	cat $(RNA_SEQ)/design.csv | parallel --lb --header : --colsep , \
@@ -184,17 +186,33 @@ rna_seq:
         BAM=$(RNA_SEQ)/bam/{run_accession}.bam \
     	run
 
-##--------------------------------------------##
-merge:
-	# Merge VCF files into a single one
-	bcftools merge -0 $(VCF_FILE) -Oz -o $(MERGE)
+	# Feature counts
+	featureCounts -a refs/ST_LT2.gtf -o counts.txt bam/*.bam
 
-	# Index the merged VCF file
-	bcftools index $(RES)/merged.vcf.gz
+##--------------------------------------------##
+stats:
+	# If this worked, id start with the command below
+	#Rscript src/r/format_featurecounts.r -c counts.txt -o counts.csv
+
+	# Since rna_seq make didnt work use this
+	cd $(RNA_SEQ)
+	bio code
+	Rscript src/r/simulate_counts.r
+
+	# Evaluate the tables
+	Rscript src/r/edger.r
+	Rscript  src/r/evaluate_results.r  -a counts.csv -b edger.csv
+
+	# Create pca using simulated data
+	src/r/plot_pca.r -c edger.csv
+
+	# Create a heatmap using simulated data
+	src/r/plot_heatmap.r -c edger.csv
+
 
 ##--------------------------------------------##
 run: download quality trim index align filter rna_seq 
-all: usage genome download quality trim index align filter rna_seq merge
+all: usage genome download quality trim index align filter rna_seq stats clean
 clean:
 	rm -rf $(QUALITY) $(FASTQ_INDIR) $(FASTP_OUTDIR) $(FASTA) $(SAM) $(VCF) $(GFF) $(RES)
 	@echo "All extraneous files have been removed"

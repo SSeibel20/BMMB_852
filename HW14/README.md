@@ -116,8 +116,18 @@ make[1]: *** [HW14/hisat2.mk:70: reads/HBR_1_R1.fq] Error 255
 make[1]: Leaving directory '/Users/sls6550/work/BMMB_852'
 make: *** [Makefile:62: rna_seq] Error 2
 
-```
+make[1]: Entering directory '/Users/sls6550/work/BMMB_852'
+# file not found: R1=HW13/rnaseq/reads/SRR29681626_1_trimmed.fastq.gz
+make[1]: Leaving directory '/Users/sls6550/work/BMMB_852'
 
+```
+The error is due to the structure of the hisat2.mk script, it calls things locally, and my makefile to run the hisat2.mk file doesnt run properly
+
+Used workflow with simulated data, had to tweak src R files due to installation of tools my R did not have (Deseq2, gplots, etc)
+
+## RESULTS FROM SIMULATED DATA
+![Screenshot](pca.pdf)
+![Screenshot](heatmap.pdf)
 
 
 
