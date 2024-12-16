@@ -126,7 +126,9 @@ The error is due to the structure of the hisat2.mk script, it calls things local
 Used workflow with simulated data, had to tweak src R files due to installation of tools my R did not have (Deseq2, gplots, etc)
 
 ## RESULTS FROM SIMULATED DATA
+
 ![Screenshot](rnaseq/pca.pdf)
+
 ![Screenshot](rnaseq/heatmap.pdf)
 
 
