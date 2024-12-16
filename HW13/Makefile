@@ -1,5 +1,4 @@
-#Homework 13 Makefile
-#Using GNU Parallel to process multiple SRR entries at once
+#Homework 14 Makefile
 
 SHELL := bash
 .ONESHELL:
@@ -32,6 +31,7 @@ VCF_FILE = $(RES)/*.vcf.gz
 GFF = $(HOME_DIR)/ST_LT2.gff3
 RES = $(HOME_DIR)/results
 RNA=$(HOME_DIR)/ST_LT2_rna.fasta
+RNA_SEQ=$(HOME_DIR)/rnaseq
 MERGE = $(RES)/merged.vcf.gz
 
 ##--------------------------------------------##
@@ -168,12 +168,21 @@ filter:
 
 ##--------------------------------------------##
 rna_seq:
-	# Run the alignment for a single sample
-	make -f src/run/hisat2.mk \
-    	REF=$(FASTA) \
-    	R1=$(RNA)  \
-        BAM=$(FILTERED_BAM) \
-        run
+	# Make folders if needed
+	mkdir -p $(RNA_SEQ)/refs
+	mkdir -p $(RNA_SEQ)/reads
+	mkdir -p $(RNA_SEQ)/bam
+
+	# copy design file to this dir
+	# cp $(HOME_DIR)/design.csv $(RNA_SEQ)/
+
+	# Run the alignment for multiple samples
+	cat $(RNA_SEQ)/design.csv | parallel --lb --header : --colsep , \
+		make -f $(RNA_SEQ)/hisat2.mk \
+        REF=$(RNA_SEQ)/refs/ST_LT2_rna.fasta \
+        R1=$(RNA_SEQ)/reads/{run_accession}_1_trimmed.fastq.gz  \
+        BAM=$(RNA_SEQ)/bam/{run_accession}.bam \
+    	run
 
 ##--------------------------------------------##
 merge:
