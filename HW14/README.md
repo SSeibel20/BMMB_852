@@ -134,6 +134,17 @@ Used workflow with simulated data, had to tweak src R files due to installation 
 - There are 95 false negatives, genes that were differentially expressed but edger did not find.
 - There are 8 false positives, genes that edger found to be differentially expressed but were not.
 
+Genes that are significantly differentially expressed:
+- GENE-15928
+- GENE-1593
+- GENE-12921
+- GENE-17747
+- GENE-17384
+- GENE-14360
+- GENE-15478
+- GENE-7217
+- GENE-2398
+
 ![Screenshot](rnaseq/pca.pdf)
 
 ![Screenshot](rnaseq/heatmap.pdf)
